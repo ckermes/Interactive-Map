@@ -1,0 +1,22 @@
+---
+title: "Interactive Map"
+author: "Me"
+date: "06/18/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r Airport CAN, echo = TRUE}
+# required library
+library(shiny)
+library(leaflet)
+AirportNYC <- data.frame(name=c("JFK", "Laguardia", "Newburgh-Stewart", "Newark"), rating = c( 1, 2, 3,4), 
+                         lat=c(40.6438, 40.7769, 41.5034,40.6943), 
+                         lng=c(-73.7823, -73.874, -74.0104,-74.1842))
+my_map <- AirportNYC  %>% leaflet()%>% addTiles() %>% 
+  addCircles(weight=20, radius=( AirportNYC$rating)*35)
+my_map 
+```
